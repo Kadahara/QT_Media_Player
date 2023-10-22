@@ -5,6 +5,7 @@
 #include <QMediaPlayer>
 #include <QStandardItemModel>
 #include <QMediaPlaylist>
+#include <QMediaContent>
 
 
 QT_BEGIN_NAMESPACE
@@ -18,6 +19,9 @@ class Widget : public QWidget
 public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
+
+    void load_playlist(QString filename);
+    void save_playlist(QString filename);
 
 private slots:
     void on_pushButtonAdd_clicked();
@@ -37,11 +41,19 @@ private slots:
 
     void on_tablePlayList_clicked(const QModelIndex &index);
 
+    void on_pushButtonPrev_clicked();
+
+    void on_pushButtonNext_clicked();
+
+    void on_pushButtonCLR_clicked();
+
 private:
     Ui::Widget *ui;
 
     QMediaPlayer* m_player;
     bool muted;
+    const char* DEFAULTE_PLAYLIST = "C:/Users/User/Documents/build-MediaPlayerQt-Desktop_Qt_5_12_12_MinGW_64_bit-Debug/debug/playlist.m3u";
+    bool play;
     QMediaPlaylist*     m_playlist;
     QStandardItemModel* m_playlist_model;
 
